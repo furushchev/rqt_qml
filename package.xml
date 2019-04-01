@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rqt_qml</name>
+  <version>0.0.0</version>
+  <description>The rqt_qml package</description>
+
+  <maintainer email="me@furushchev.ru">Yuki Furuta</maintainer>
+
+  <license>BSD</license>
+
+  <author email="boris.a.gromov@gmail.com">Boris Gromov</author>
+  <author email="me@furushchev.ru">Yuki Furuta</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>python-matplotlib</exec_depend>
+  <exec_depend>python-numpy</exec_depend>
+  <exec_depend>python-rospkg</exec_depend>
+  <exec_depend version_gte="0.2.19">python_qt_binding</exec_depend>
+  <exec_depend version_gte="0.2.25">qt_gui_py_common</exec_depend>
+  <exec_depend>qwt_dependency</exec_depend>
+  <exec_depend>rosgraph</exec_depend>
+  <exec_depend>rostopic</exec_depend>
+  <exec_depend>rqt_gui</exec_depend>
+  <exec_depend>rqt_gui_py</exec_depend>
+  <exec_depend>rqt_py_common</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <export>
+    <architecture_independent/>
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
+    <rqt_qml imports="${prefix}/plugins" plugins="${prefix}/lib"/>
+  </export>
+</package>

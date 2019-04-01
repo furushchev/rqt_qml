@@ -1,0 +1,8 @@
+<launch>
+  <node name="chat" pkg="rqt_qml" type="rqt_qml"
+        args="$(find rqt_qml)/qml/Chat.qml"
+        required="true" output="screen">
+    <!-- Workaround for QT GTK+ style -->
+    <env name="LIBOVERLAY_SCROLLBAR" value="0"/>
+  </node>
+</launch>
