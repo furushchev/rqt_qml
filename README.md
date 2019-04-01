@@ -67,7 +67,7 @@ There are four components provided by the plugin:
  * `Publisher`: provides function to publish to ROS topic. Similarly to `Subscriber` uses `Topic` component.
  * `Topic`: just a container for topic specific properties, i.e. `name` and `type`.
 
-See [qml/Chat.qml](examples/Chat.qml).
+See [qml/Chat.qml](qml/Chat.qml).
 
 Documentation is [here](https://doc.qt.io/qt-5.6/qmlapplications.html).
 
