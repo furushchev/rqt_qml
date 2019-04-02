@@ -2,6 +2,8 @@ language: generic
 services:
   - docker
 env:
+  global:
+    - BEFORE_SCRIPT="./.ci/before_script.sh"
   matrix:
     - ROS_DISTRO="kinetic" UPSTREAM_WORKSPACE=file
 install:
