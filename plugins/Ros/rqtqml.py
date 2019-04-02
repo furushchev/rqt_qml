@@ -51,13 +51,14 @@ class Topic(QQuickItem, QQmlParserStatus):
 
 
 class Subscriber(QQuickItem, QQmlParserStatus):
-    on_message = pyqtSignal('QVariantMap', name = 'message', arguments = ['msg'])
+    on_message = pyqtSignal('QVariantMap', name = 'messageChanged', arguments = ['msg'])
 
     def __init__(self, parent = None):
         super(Subscriber, self).__init__(parent)
         self._topic = None
         self._queue_size = None
         self._sub = None
+        self._msg_dict = dict()
 
     @pyqtProperty(Topic)
     def topic(self):
@@ -75,17 +76,29 @@ class Subscriber(QQuickItem, QQmlParserStatus):
     def queueSize(self, queue_size):
         self._queue_size = queue_size
 
+    @pyqtProperty('QVariantMap', notify=on_message)
+    def message(self):
+        return self._msg_dict
+
+    @message.setter
+    def message(self, msg):
+        self._msg_dict = msg
+        self.on_message.emit(self._msg_dict)
+
     def componentComplete(self):
         if not self.topic:
             rospy.logfatal('QML property Subscriber.topic is not set')
             sys.exit(1)
 
-    def onMessage(self, data):
-        self.on_message.emit(message_converter.convert_ros_message_to_dictionary(data))
+    def message_callback(self, data):
+        msg_dict = message_converter.convert_ros_message_to_dictionary(data)
+        self.message = msg_dict
 
     def subscribe(self):
         message_class = roslib.message.get_message_class(self.topic.type)
-        self._sub = rospy.Subscriber(self._topic.name, message_class, self.onMessage, queue_size = self._queue_size)
+        self._sub = rospy.Subscriber(
+            self._topic.name, message_class, self.message_callback,
+            queue_size = self._queue_size)
 
 
 class Publisher(QQuickItem, QQmlParserStatus):

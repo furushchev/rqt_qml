@@ -26,7 +26,7 @@ Rectangle {
         name: 'chatter'
         type: 'std_msgs/String'
       }
-      onMessage: {
+      onMessageChanged: {
         display.text += msg.data + '\n'
       }
     }

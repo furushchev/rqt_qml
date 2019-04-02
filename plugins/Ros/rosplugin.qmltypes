@@ -14,7 +14,7 @@ Module {
         exports: ["Ros/Publisher 1.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "topic"; type: "QQuickItem"; isPointer: true }
-        Property { name: "queue_size"; type: "int" }
+        Property { name: "queueSize"; type: "int" }
         Method {
             name: "publish"
             Parameter { type: "string" }
@@ -62,7 +62,8 @@ Module {
         exports: ["Ros/Subscriber 1.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "topic"; type: "QQuickItem"; isPointer: true }
-        Property { name: "queue_size"; type: "int" }
+        Property { name: "queueSize"; type: "int" }
+        Property { name: "message"; type: "QVariantMap"}
         Signal {
             name: "message"
             Parameter { name: "msg"; type: "QVariantMap" }

@@ -131,8 +131,9 @@ Subscriber {
   /* Handles 'message' signal emitted by the plugin backend. 
    * Passes 'msg' as sole parameter, which is a JavaScript object
    */
-  onMessage: {
-    // QML JavaScript code goes here
+  onMessageChanged: {
+    // QML code goes here
+    console.log(msg.toString())
   }
 }
 ```
